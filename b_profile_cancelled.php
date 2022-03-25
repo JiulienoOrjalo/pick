@@ -366,7 +366,7 @@ if (!isset($_SESSION['username'])) {
 
                                            <td>' . $row1['product_number'] . '</td>  
                                             <td>' . $row1['order_time'] . '</td>  
-                                            <td>' . '&#8369;' . $row1["total_price"] . '</td>
+                                            <td>' . $row1["total_price"] . '</td>
                                             <td>' . 'Cash on Delivery' . '</td>
                                             <td>' . $action . '</td>  
 
@@ -555,7 +555,7 @@ if (!isset($_SESSION['username'])) {
         <td class="b"><?php echo $row1['description']; ?></td>
         <td><?php echo $row1['price']; ?></td>
         <td><?php echo $row1['quantity']; ?> </td>
-        <td> &#8369;<?php echo $row1['total_price']; ?></td>
+        <td> <?php echo $row1['total_price']; ?></td>
         <td><?php echo $action ; ?> </td>
       </tr>
 
@@ -569,7 +569,7 @@ if (!isset($_SESSION['username'])) {
     <h5><b>Payment Method:</b> Cash on Delivery</h5>
 </div>
 <div style="display: inline-block; float: right; margin-right: 10px;">
-    <h5><b>Total Price:</b>  &#8369;<?php echo $row1['total_price'] ?> </h5>
+    <h5><b>Total Price:</b> <?php echo $row1['total_price'] ?> </h5>
    
 </div>
 </div>
