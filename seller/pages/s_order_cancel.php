@@ -52,6 +52,7 @@ $result = mysqli_query($connection, $query);
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/icon.png">
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 
     <title>Pick A Plants - Accounts</title>
 
@@ -231,36 +232,7 @@ $result = mysqli_query($connection, $query);
                         </li>
 
                        
-                        <li>
-                                 <?php
-                   $user = $data2['unique_id'];
-                   $sql2="SELECT * FROM tbl_register WHERE not unique_id='$user' ORDER BY id DESC";
-                   $find=mysqli_query($db,$sql2);
-                   $data=mysqli_fetch_assoc($find);
 
-                   ?>
-                  <!--CHAT FEATURE-->
-                    <a href="chat/chat.php?user_id=<?php echo $data['unique_id']?>" onclick='changeStatus(<?php echo $data2['unique_id']?>)' style="color: #64ca87;" ><i class="fa fa-comments" aria-hidden="true"></i></i>&nbsp; Messages 
-                     <span class="badge badge-primary" style="background-color: #64ca87;">  <?php
-                    $con=mysqli_connect('localhost','root','','pick_a_plant');
-
-                     $connection=mysqli_connect('localhost','root','','pick_a_plant');
-                    $buyer = $data2['unique_id'];
-                    $query="SELECT * FROM tbl_register WHERE unique_id = '$buyer'";
-                    $result=mysqli_query($connection,$query);
-                    $row=mysqli_fetch_array($result);
-                    $id = $row['unique_id'];
-
-
-                    $sql="SELECT count(incoming_msg_id) AS total FROM messages WHERE  incoming_msg_id=$id AND status='1'";
-                    $result=mysqli_query($con,$sql);
-                   
-                    $values=mysqli_fetch_assoc($result);
-                   $num_rows=$values['total'];
-                    
-                    ?>
-                  <small id=''><?php echo $num_rows?></small></span></small></a></a>
-                            </li>
 <script>
     function changeStatus($id){
       

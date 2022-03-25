@@ -142,36 +142,7 @@ if (!isset($_SESSION['username'])) {
 
                            
 
-                            <li>
-                                 <?php
-                   $user = $data2['unique_id'];
-                   $sql2="SELECT * FROM tbl_register WHERE not unique_id='$user' ORDER BY id DESC";
-                   $find=mysqli_query($db,$sql2);
-                   $data=mysqli_fetch_assoc($find);
 
-                   ?>
-                   <!--CHAT FEATURE-->
-                    <a href="chat/chat.php?user_id=<?php echo $data['unique_id']?>" onclick='changeStatus(<?php echo $data2['unique_id']?>)' style="color: #64ca87;" ><i class="fa fa-comments" aria-hidden="true"></i></i>&nbsp; Messages 
-                     <span class="badge badge-primary" style="background-color: #64ca87;">  <?php
-                    $con=mysqli_connect('localhost','root','','pick_a_plant');
-
-                     $connection=mysqli_connect('localhost','root','','pick_a_plant');
-                    $buyer = $data2['unique_id'];
-                    $query="SELECT * FROM tbl_register WHERE unique_id = '$buyer'";
-                    $result=mysqli_query($connection,$query);
-                    $row=mysqli_fetch_array($result);
-                    $id = $row['unique_id'];
-
-
-                    $sql="SELECT count(incoming_msg_id) AS total FROM messages WHERE  incoming_msg_id=$id AND status='1'";
-                    $result=mysqli_query($con,$sql);
-                   
-                    $values=mysqli_fetch_assoc($result);
-                   $num_rows=$values['total'];
-                    
-                    ?>
-                  <small id=''><?php echo $num_rows?></small></span></small></a></a>
-                            </li>
 <script>
     function changeStatus($id){
       
@@ -293,50 +264,7 @@ if (!isset($_SESSION['username'])) {
 
 
 
-                            <div class="col-lg-3 col-md-6">
-                            <div class="panel panel-red">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <i class="fa fa-comments-o fa-5x"></i>
-                                        </div>
-                                        <div class="col-xs-9 text-right">
-                                              <div class="huge">  
-                                               <?php
-                    $con=mysqli_connect('localhost','root','','pick_a_plant');
 
-                     $connection=mysqli_connect('localhost','root','','pick_a_plant');
-                    $buyer = $data2['unique_id'];
-                    $query="SELECT * FROM tbl_register WHERE unique_id = '$buyer'";
-                    $result=mysqli_query($connection,$query);
-                    $row=mysqli_fetch_array($result);
-                    $id = $row['unique_id'];
-
-
-                    $sql="SELECT count(incoming_msg_id) AS total FROM messages WHERE  incoming_msg_id=$id AND status='1'";
-                    $result=mysqli_query($con,$sql);
-                   
-                    $values=mysqli_fetch_assoc($result);
-                   $num_rows=$values['total'];
-                    
-                
-                                                 echo "<small>",$num_rows,"</small>";
-
-                                                ?></div>
-                                            <div>New Messages!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="chat/chat.php?user_id=<?php echo $data['unique_id']?>">
-                                    <div class="panel-footer">
-                                        <span class="pull-left"  onclick='changeStatus(<?php echo $data2['unique_id']?>)' >View Details</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
 
                     </div>
 

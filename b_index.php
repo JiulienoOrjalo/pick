@@ -256,26 +256,7 @@ if (!isset($_SESSION['username'])) {
                    $data=mysqli_fetch_assoc($find);
 
                    ?>
-                <li><a href="chat/chat.php?user_id=<?php echo $data['unique_id']?>" id="message" onclick='changeStatus(<?php echo $data2['unique_id']?>)'><i class="fa fa-envelope" aria-hidden="true" ></i><small><span class="badge" id="count">
-            <?php
-                    $con=mysqli_connect('localhost','root','','pick_a_plant');
 
-                     $connection=mysqli_connect('localhost','root','','pick_a_plant');
-                    $buyer = $data2['unique_id'];
-                    $query="SELECT * FROM tbl_register WHERE unique_id = '$buyer'";
-                    $result=mysqli_query($connection,$query);
-                    $row=mysqli_fetch_array($result);
-                    $id = $row['unique_id'];
-
-
-                    $sql="SELECT count(incoming_msg_id) AS total FROM messages WHERE  incoming_msg_id=$id AND status='1'";
-                    $result=mysqli_query($con,$sql);
-                   
-                    $values=mysqli_fetch_assoc($result);
-                   $num_rows=$values['total'];
-                    
-                    ?>
-                  <small id=''><?php echo $num_rows?></small></span></small></a>
                
 <script>
     function changeStatus($id){

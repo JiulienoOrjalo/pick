@@ -13,7 +13,13 @@ $result = mysqli_query($connection, "SELECT * FROM dictionary");
 	$rec3 = mysqli_query($connection,"SELECT * FROM tbl_stars WHERE product_id=$id");
 	// $rec = mysqli_query($connection,"SELECT * FROM tbl_product INNER JOIN tbl_comment ON tbl_product.id=tbl_comment.product_id WHERE id=$id");
 	$rec4 = mysqli_query($connection,"SELECT * FROM tbl_comment WHERE product_id=$id");
+	
  }
+
+ $listcurrency = mysqli_query($connection, "SELECT * FROM tbl_currency");
+
+
+
 if (isset($_GET['ratings'])) {
     $id = $_GET['ratings'];
     $rec = mysqli_query($connection,"SELECT * FROM tbl_product WHERE id=$id");
@@ -47,10 +53,53 @@ if (isset($_POST['check'])) {
 	$seller_name=($_POST['seller_name']);
 	$location=($_POST['location']);
 	$quantity =($_POST['quantity']);
+
+
 	$price =($_POST['price']);
+
+	$usd = ($price * 0.019);
+	$yen = ($price * 119.21);
+	$btc = ($price * 0.000024);
+  
+	$pick_currency = $_POST['currency'];
+  
+	if ($pick_currency == 'usd') {
+	  $price=  $usd;
+	}
+	elseif ($pick_currency == 'yen'){
+	  $price= $yen;
+	}
+	elseif ($pick_currency == 'btc'){
+	  $price= $btc;
+	}
+	
+
+
+ 
+
+
+
 	$stocks = ($_POST['stocks']);
 	$category = ($_POST['category']);
+	
 	$totalprice=($quantity * $price);
+
+
+	// if ($totalprice == 'usd') {
+	// 	$curprice=  '$'.$usd;
+	//   }
+	//   elseif ($totalprice == 'yen'){
+	// 	$curprice= '¥' .$yen;
+	//   }
+	//   elseif ($totalprice == 'btc'){
+	// 	$curprice= '₿' .$btc;
+	//   }
+
+
+	//   $totalcurrency = $curprice;
+
+
+
 	$totalstocks =($stocks-$quantity);
 	
 

@@ -427,26 +427,7 @@ label {
                    $data=mysqli_fetch_assoc($find);
 
                    ?>
-                <li><a href="chat/chat.php?user_id=<?php echo $data['unique_id']?>" id="message" onclick='changeStatus(<?php echo $data2['unique_id']?>)'><i class="fa fa-envelope" aria-hidden="true" ></i><small><span class="badge" id="count">
-            <?php
-                    $con=mysqli_connect('localhost','root','','pick_a_plant');
 
-                     $connection=mysqli_connect('localhost','root','','pick_a_plant');
-                    $buyer = $data2['unique_id'];
-                    $query="SELECT * FROM tbl_register WHERE unique_id = '$buyer'";
-                    $result=mysqli_query($connection,$query);
-                    $row=mysqli_fetch_array($result);
-                    $id = $row['unique_id'];
-
-
-                    $sql="SELECT count(incoming_msg_id) AS total FROM messages WHERE  incoming_msg_id=$id AND status='1'";
-                    $result=mysqli_query($con,$sql);
-                   
-                    $values=mysqli_fetch_assoc($result);
-                   $num_rows=$values['total'];
-                    
-                    ?>
-                  <small id=''><?php echo $num_rows?></small></span></small></a>
                
 <script>
     function changeStatus($id){
@@ -587,7 +568,7 @@ label {
         
     </div>
     <input type="hidden" name="price[]" value="'.$row1['price'].'">
-    <div class="product-price">₱'.$row1['price'].'</div>
+    <div class="product-price">'.$row1['price'].'</div>
 
     <input type="hidden" name="quantity[]" value="'. $row1['quantity'].'">
   <div class="product-quantity">'. $row1['quantity'] .'</div>
@@ -597,7 +578,7 @@ label {
     </div>
 
     <input type="hidden" name="total_price[]" value="'. $row1['total_price'] .'">
-    <div class="product-line-price" style="width: 90px;">₱<b>'.$row1['total_price'].'</b> |
+    <div class="product-line-price" style="width: 90px;"><b>'.$row1['total_price'].'</b> |
 
     </div>
 
@@ -624,47 +605,9 @@ label {
            }
        ?>
 
-<div>
-<div style="float: left; display: inline-block; text-align: left;"> 
-<p><b>Payment Method:</b></p>
-<small>Cash on Delivery</small>
-</div>
-
-<div style="float: right; display: inline-block; text-align: right;"> 
-<p><b>Total:</b></p>
-<h4>  <?php
-                   
 
 
-                    $con=mysqli_connect('localhost','root','','pick_a_plant');
 
-                    $id = $data2['id'];
-
-                    $sql="SELECT SUM(total_price) AS total FROM tbl_check WHERE buyer_id = $id LIMIT 1";
-                    $result=mysqli_query($con,$sql);
-
-                    if (mysqli_num_rows($result) > 0) {
-                    $values=mysqli_fetch_assoc($result);
-                    $subtotal=$values['total'];
-
-                    if ($subtotal == null) {
-                        $peso="";
-                      
-                    }
-                      if ($subtotal > 1) {
-                       $peso="&#8369;";
-                    }
-
-
-                    echo "<p>", $peso, $subtotal,"</p>";
-                    echo '<input type="hidden" name="subtotal[]" value= '.$subtotal.'>';
-                    }
-                    else{
-                    echo "hello";
-                    }
-
-                ?></h4>
-<br>
 
  <input type="submit" name="btncheck" class="btn btn-success checkout" style="border-radius: 0px; outline: none;" value="Checkout">
 </div>

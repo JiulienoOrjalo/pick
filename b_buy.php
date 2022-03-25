@@ -382,26 +382,7 @@ $product_id=0;
                    $data=mysqli_fetch_assoc($find);
 
                    ?>
-                <li><a href="chat/chat.php?user_id=<?php echo $data['unique_id']?>" id="message" onclick='changeStatus(<?php echo $data2['unique_id']?>)'><i class="fa fa-envelope" aria-hidden="true" ></i><small><span class="badge" id="count">
-            <?php
-                    $con=mysqli_connect('localhost','root','','pick_a_plant');
 
-                     $connection=mysqli_connect('localhost','root','','pick_a_plant');
-                    $buyer = $data2['unique_id'];
-                    $query="SELECT * FROM tbl_register WHERE unique_id = '$buyer'";
-                    $result=mysqli_query($connection,$query);
-                    $row=mysqli_fetch_array($result);
-                    $id = $row['unique_id'];
-
-
-                    $sql="SELECT count(incoming_msg_id) AS total FROM messages WHERE  incoming_msg_id=$id AND status='1'";
-                    $result=mysqli_query($con,$sql);
-                   
-                    $values=mysqli_fetch_assoc($result);
-                   $num_rows=$values['total'];
-                    
-                    ?>
-                  <small id=''><?php echo $num_rows?></small></span></small></a>
                
 <script>
     function changeStatus($id){
@@ -492,13 +473,32 @@ $product_id=0;
       <div class="col-sm-6 center-block text-left">
         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
         <input type="hidden" name="name" value="<?php echo $row['name']; ?>">
+
+      
+    
+
+
         <h1><strong><?php echo $row['name']; ?></strong></h1>
          <div class="d-inline-flex p-3"><strong>Location:</strong> 
           <input type="hidden" name="location" value="<?php echo $row['location']; ?>">
+
+
           <span>  &nbsp;  &nbsp;<?php echo $row['location']; ?></span>
         </div>
+<hr>
+        <div class="d-inline-flex p-3"><strong>Please Select Currency:</strong> 
+                      <select class="form-control" name="currency">
+                    
+                          <option readonly disabled>-- Select currency --</option>
+                       <?php  
+                                  while($row2 = mysqli_fetch_array($listcurrency))  
+                                  { 
+                                    $pick_currency = $row2['currency'];
+                                    echo "<option value='$pick_currency'>$pick_currency</option>";
 
-       
+                                      }  
+                                  ?>  
+                       </select>
 
 <!-- START REPORT SELLER MODAL HERE-->
 
@@ -522,6 +522,8 @@ $product_id=0;
               <?php echo $row['stocks']; ?></span> stocks</span> 
         </div>
        </form>
+
+       
 
                               <?php
                                 if (!empty($row['sale'])) {
